@@ -6,14 +6,6 @@ import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
-	<div>
-		<HeaderComponent />
-			<App />
-
-		<FooterComponent />
-	</div>,
-	document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 registerServiceWorker();
