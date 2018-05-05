@@ -5,7 +5,7 @@ console.log("I work");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
- 	res.send('send resource');
+ 	res.send('hello!');
 });
 
 module.exports = router;
