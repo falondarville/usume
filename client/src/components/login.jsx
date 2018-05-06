@@ -7,6 +7,7 @@ export default class Login extends Component {
 
   render() {
     return (
+    	<Grid>
     	<Form horizontal>
   			<FormGroup controlId="formHorizontalEmail">
     			<Col componentClass={ControlLabel} sm={4}>
@@ -32,6 +33,9 @@ export default class Login extends Component {
     			</Col>
   			</FormGroup>
 		</Form>
+
+		<p>Don't have an account? <Link to="/register">Register Here.</Link></p>
+    	</Grid>
     );
   }
 }

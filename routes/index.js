@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-console.log("I work");
+console.log('Running index.js')
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
  	res.send('send resource');
 });
