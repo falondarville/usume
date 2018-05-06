@@ -34,7 +34,9 @@ export default class Login extends Component {
   			</FormGroup>
 		</Form>
 
+    <Col smOffset={4} sm={10}>
 		<p>Don't have an account? <Link to="/register">Register Here.</Link></p>
+    </Col>
     	</Grid>
     );
   }

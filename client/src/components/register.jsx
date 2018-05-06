@@ -7,13 +7,13 @@ export default class Register extends Component {
 
 	render() {
 		return (
-			<Form horizontal>
+			<Form horizontal method="post" action="/users">
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="email" placeholder="Email" />
+	      				<FormControl type="email" placeholder="Email" name="email" />
 	    			</Col>
 	  			</FormGroup>
 
@@ -22,7 +22,7 @@ export default class Register extends Component {
 						First Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="First Name" />
+	      				<FormControl type="text" placeholder="First Name" name="first"/>
 	    			</Col>
 	  			</FormGroup>
 
@@ -31,7 +31,7 @@ export default class Register extends Component {
 					Last Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="Last Name" />
+	      				<FormControl type="text" placeholder="Last Name" name="last" />
 	    			</Col>
 	  			</FormGroup>
 
@@ -40,7 +40,7 @@ export default class Register extends Component {
 					List your skills, each of them separated by a comma.
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl componentClass="textarea" placeholder="Skills" />
+	      				<FormControl componentClass="textarea" placeholder="Skills" name="skills" />
 	    			</Col>
 	  			</FormGroup>
 
