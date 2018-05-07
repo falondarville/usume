@@ -1,48 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
 
 export default class Register extends Component {
 
-	// constructor(){
-	// 	super();
-	// 	this.state = {
-	// 		email: '',
-	// 		first: '',
-	// 		last: '',
-	// 		skills: ''
-	// 	};
-	// }
+	constructor(){
+		super();
+		this.state = {
+			email: '',
+			first: '',
+			last: '',
+			skills: ''
+		};
+	}
 
-	// onChange = (event) => {
-	// 	const state = this.state;
-	// 	state[event.target.name] = event.target.value;
-	// 	this.setState(state);
-	// }
+	handleChange = (event) => {
+		const state = this.state;
+		state[event.target.name] = event.target.value;
+		this.setState(state, () => console.log(this.state));
+		console.log(event.target.value);
+	}
 
-	// onSubmit = (event) => {
-	// 	event.preventDefault();
-	// 	const { email, first, last, skills } = this.state;
+	handleSubmit = (event) => {
+		event.preventDefault();
+		const { email, first, last, skills } = this.state;
 
-	// 	// componentDidMount(){
-	// 	// 	console.log('state mounted')
-	// 	// 	// fetch('/users')
-	// 	// 	// .then(res => res.json())
-
-	// 	// }
-	// 	// console.log(this.state)
-	// }
+		// add the axios method
+	}
 
 	render() {
 		return (
-			<Form horizontal method="post" action="/users">
+			<Form horizontal onSubmit={this.handleSubmit}>
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="email" placeholder="Email" name="email" />
+	      				<FormControl type="email" placeholder="Email" name="email" onChange={this.handleChange} />
 	    			</Col>
 	  			</FormGroup>
 
@@ -51,7 +48,7 @@ export default class Register extends Component {
 						First Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="First Name" name="first"/>
+	      				<FormControl type="text" placeholder="First Name" name="first" onChange={this.handleChange}/>
 	    			</Col>
 	  			</FormGroup>
 
@@ -60,7 +57,7 @@ export default class Register extends Component {
 					Last Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="Last Name" name="last" />
+	      				<FormControl type="text" placeholder="Last Name" name="last" onChange={this.handleChange}/>
 	    			</Col>
 	  			</FormGroup>
 
@@ -69,7 +66,7 @@ export default class Register extends Component {
 					List your skills, each of them separated by a comma.
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl componentClass="textarea" placeholder="Skills" name="skills" />
+	      				<FormControl componentClass="textarea" placeholder="Skills" name="skills" onChange={this.handleChange} />
 	    			</Col>
 	  			</FormGroup>
 

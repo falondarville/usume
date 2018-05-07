@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -13,16 +14,21 @@ app.post('/users', function(request, response){
 	var skills = request.body.skills;
 	
 	console.log(email, first, last, skills);
-	res.send(email, first, last, skills);
+	response.send({email: email, 
+		first: first, 
+		last: last, 
+		skills: skills});
+
+	// push to mySQL
 })
 
-// const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
-// app.get('/users', (req, res) => {
-//   res.send({ express: 'Hello From Express' });
-// });
+app.get('/users', (req, res) => {
+  res.send({ express: 'Hello From Express' });
+});
 
-// app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
 
