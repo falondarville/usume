@@ -6,12 +6,15 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/users', function(request, response){
 	var email = request.body.email;
 	var first = request.body.first;
 	var last= request.body.last;
 	var skills = request.body.skills;
+
+	// request.query
 	
 	console.log(email, first, last, skills);
 	response.send({email: email, 

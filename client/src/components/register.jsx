@@ -28,7 +28,16 @@ export default class Register extends Component {
 		event.preventDefault();
 		const { email, first, last, skills } = this.state;
 
-		// add the axios method
+		//post to Express API
+		axios.post('http://localhost:3001/users', {
+			email, first, last, skills
+  		})
+  		.then(function (response) {
+    		console.log(response);
+  		})
+ 		.catch(function (error) {
+    		console.log(error);
+  		});
 	}
 
 	render() {
