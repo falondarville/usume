@@ -7,6 +7,24 @@ import Login from './components/login';
 import Navbar from './components/CustomNavbar';
 
 class App extends Component {
+  // state = {
+  //   response: ''
+  // };
+
+  // componentDidMount(){
+  //   this.CallApi()
+  //   .then(res => this.setState({ response: res.express }))
+  //   .catch(err => console.log(err));
+  // }
+
+  // callApi = async() => {
+  //   const response = await fetch('/users');
+  //   const body = await response.json();
+
+  //   if (response.status !== 200) throw Error(body.message);
+
+  //   return body;
+  // }
 
   render() {
     return (

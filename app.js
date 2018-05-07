@@ -1,8 +1,11 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
+var nodemon = require('nodemon');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,12 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// bodyParser set up
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.set('port', process.env.PORT || 3001);
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
 });
 
 // error handler

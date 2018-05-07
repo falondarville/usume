@@ -1,13 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Jumbotron, Grid, Row, Col, Image, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
+import { Grid, Row, Col, Image, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
 
 export default class Register extends Component {
 
+	constructor(){
+		super();
+		this.state = {
+			email: '',
+			first: '',
+			last: '',
+			skills: ''
+		};
+	}
+
+	onChange = (event) => {
+		const state = this.state;
+		state[event.target.name] = event.target.value;
+		this.setState(state);
+	}
+
+	onSubmit = (event) => {
+		event.preventDefault();
+		const { email, first, last, skills } = this.state;
+
+		// componentDidMount(){
+		// 	fetch('/users')
+		// 	.then(res => res.json())
+
+		// }
+		console.log(this.state)
+	}
+
 	render() {
 		return (
-			<Form horizontal method="post" action="/users">
+			<Form horizontal method="POST" action="/users">
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email

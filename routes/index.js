@@ -3,7 +3,8 @@ var router = express.Router();
 
 console.log('Running index.js')
 
-router.get('/', function(req, res, next) {
+// displays user information once logged in
+router.get('/index', function(req, res, next) {
  	res.send('send resource');
 });
 
