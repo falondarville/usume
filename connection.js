@@ -9,5 +9,17 @@ var connection = mysql.createConnection({
 	database: process.env.MYSQL_DB || 'usume'
 })
 
+// this is working
+connection.query('SELECT * FROM users', function(err, result){
+if (err){
+	throw err
+} else {
+	console.log(result[0].email)
+	console.log(result[0].first)
+	console.log(result[0].last)
+	console.log(result[0].skills)
+	}
+})
+
 // export the connection
 module.exports = connection;

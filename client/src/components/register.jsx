@@ -4,12 +4,22 @@ import axios from 'axios';
 import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
 
+// <FormGroup controlId="formHorizontalPassword">
+// 		<Col componentClass={ControlLabel} sm={4}>
+	// 	Password
+	// </Col>
+// 	<Col sm={5}>
+// 	<FormControl label="Password" placeholder="Password" type="password" name="password" />
+// </Col>
+// </FormGroup>
+
 export default class Register extends Component {
 
 	constructor(){
 		super();
 		this.state = {
 			email: '',
+			// password: '',
 			first: '',
 			last: '',
 			skills: ''
@@ -50,6 +60,8 @@ export default class Register extends Component {
 	      				<FormControl type="email" placeholder="Email" name="email" onChange={this.handleChange} />
 	    			</Col>
 	  			</FormGroup>
+
+
 
 	  			<FormGroup controlId="formHorizontalFirstName">
 	    			<Col componentClass={ControlLabel} sm={4}>
@@ -93,3 +105,6 @@ export default class Register extends Component {
 		)
 	}
 }
+
+
+
