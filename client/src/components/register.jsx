@@ -5,37 +5,38 @@ import './register.css';
 
 export default class Register extends Component {
 
-	constructor(){
-		super();
-		this.state = {
-			email: '',
-			first: '',
-			last: '',
-			skills: ''
-		};
-	}
+	// constructor(){
+	// 	super();
+	// 	this.state = {
+	// 		email: '',
+	// 		first: '',
+	// 		last: '',
+	// 		skills: ''
+	// 	};
+	// }
 
-	onChange = (event) => {
-		const state = this.state;
-		state[event.target.name] = event.target.value;
-		this.setState(state);
-	}
+	// onChange = (event) => {
+	// 	const state = this.state;
+	// 	state[event.target.name] = event.target.value;
+	// 	this.setState(state);
+	// }
 
-	onSubmit = (event) => {
-		event.preventDefault();
-		const { email, first, last, skills } = this.state;
+	// onSubmit = (event) => {
+	// 	event.preventDefault();
+	// 	const { email, first, last, skills } = this.state;
 
-		// componentDidMount(){
-		// 	fetch('/users')
-		// 	.then(res => res.json())
+	// 	// componentDidMount(){
+	// 	// 	console.log('state mounted')
+	// 	// 	// fetch('/users')
+	// 	// 	// .then(res => res.json())
 
-		// }
-		console.log(this.state)
-	}
+	// 	// }
+	// 	// console.log(this.state)
+	// }
 
 	render() {
 		return (
-			<Form horizontal method="POST" action="/users">
+			<Form horizontal method="post" action="/users">
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email

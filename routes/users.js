@@ -1,15 +1,28 @@
 const express = require('express');
+const mysql = require('mysql');
 
 const app = express();
-const port = process.env.PORT || 3001;
 
-app.get('/users', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.post('/users', function(request, response){
+	var email = request.body.email;
+	var first = request.body.first;
+	var last= request.body.last;
+	var skills = request.body.skills;
+	
+	console.log(email, first, last, skills);
+	res.send(email, first, last, skills);
+})
 
+// const port = process.env.PORT || 3001;
 
+// app.get('/users', (req, res) => {
+//   res.send({ express: 'Hello From Express' });
+// });
+
+// app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
 

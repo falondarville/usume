@@ -24,12 +24,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // bodyParser set up
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('port', process.env.PORT || 3001);
-var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
-});
+// app.set('port', process.env.PORT || 3001);
+// var server = app.listen(app.get('port'), function() {
+//   console.log('Express server listening on port ' + server.address().port);
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
