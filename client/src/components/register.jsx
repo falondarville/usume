@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Row, Col, Image, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
+import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
 
 export default class Register extends Component {
