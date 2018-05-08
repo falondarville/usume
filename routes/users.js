@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const connection = require('./connection');
+const connection = require('./../connection');
 
 const app = express();
 
@@ -22,12 +22,27 @@ app.post('/users', function(request, response){
 	var passingData = [email, first, last, skills];
 	// request.query
 
-	// data obtained from React registration form is printing to console
-	console.log(email, first, last, skills);
+	function addUser(email, first, last, skills){
 
-	connection.query("INSERT INTO users(email, first, last, skills) VALUES(?, ?, ?, ?)", [passingData], function(err, result){
-	console.log("Success");
+		var queryString= "INSERT INTO users(email, first, last, skills) VALUES(email, first, last, skills)";
+
+		connectionManager.getConnection()
+			.then(function(connection){
+				var query = connectionManager.prepareQuery(queryString);
+				console.log("Query to execute: " + query);
+				connection.query(query, function(err, result){
+				console.log("Reading from inside connection query function");
+				console.log("Success");
+			})
 	})
+
+	// data obtained from React registration form is printing to console
+	console.log("Reading from post function")
+	console.log(email, first, last, skills);
+}
+})
+
+
 	// response.send({
 	// 	email: email,
 	// 	// password: password, 
