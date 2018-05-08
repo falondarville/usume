@@ -3,6 +3,8 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const connection = require('./../connection');
+var router = express.Router();
+// const app = require('./../app')
 
 const app = express();
 
@@ -10,38 +12,34 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = process.env.PORT || 3001;
-
-app.post('/users', function(request, response){
+router.post('/users', function(request, response){
 	// do I need to JSON.stringify?
-	var email = JSON.stringify(request.body.email);
+	var email = request.body.email;
 	// var password = request.body.password;
-	var first = JSON.stringify(request.body.first);
-	var last= JSON.stringify(request.body.last);
-	var skills = JSON.stringify(request.body.skills);
-	var passingData = [email, first, last, skills];
+	var first = request.body.first;
+	var last= request.body.last;
+	var skills = request.body.skills;
+	// var passingData = [email, first, last, skills];
 	// request.query
 
-	function addUser(email, first, last, skills){
+	// function addUser(email, first, last, skills){
 
-		var queryString= "INSERT INTO users(email, first, last, skills) VALUES(email, first, last, skills)";
+	// 	var queryString= "INSERT INTO users(email, first, last, skills) VALUES(email, first, last, skills)";
 
-		connectionManager.getConnection()
-			.then(function(connection){
-				var query = connectionManager.prepareQuery(queryString);
-				console.log("Query to execute: " + query);
-				connection.query(query, function(err, result){
-				console.log("Reading from inside connection query function");
-				console.log("Success");
-			})
-	})
+	// 	connectionManager.getConnection()
+	// 		.then(function(connection){
+	// 			var query = connectionManager.prepareQuery(queryString);
+	// 			console.log("Query to execute: " + query);
+	// 			connection.query(query, function(err, result){
+	// 			console.log("Reading from inside connection query function");
+	// 			console.log("Success");
+	// 		})
+	// })
 
 	// data obtained from React registration form is printing to console
 	console.log("Reading from post function")
 	console.log(email, first, last, skills);
-}
 })
-
 
 	// response.send({
 	// 	email: email,
@@ -67,4 +65,6 @@ app.post('/users', function(request, response){
 //   res.send({ express: 'Hello From Express' });
 // });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = router;
+
+
