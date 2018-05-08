@@ -4,22 +4,14 @@ import axios from 'axios';
 import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
 
-// <FormGroup controlId="formHorizontalPassword">
-// 		<Col componentClass={ControlLabel} sm={4}>
-	// 	Password
-	// </Col>
-// 	<Col sm={5}>
-// 	<FormControl label="Password" placeholder="Password" type="password" name="password" />
-// </Col>
-// </FormGroup>
-
 export default class Register extends Component {
 
 	constructor(){
 		super();
 		this.state = {
 			email: '',
-			// password: '',
+			password: '',
+			passwordConfirm: '',
 			first: '',
 			last: '',
 			skills: ''
@@ -35,11 +27,11 @@ export default class Register extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const { email, first, last, skills } = this.state;
+		const { email, password, passwordConfirm, first, last, skills } = this.state;
 
 		//post to Express API
 		axios.post('http://localhost:3001/users', {
-			email, first, last, skills
+			email, password, passwordConfirm, first, last, skills
   		})
   		.then(function (response) {
     		console.log(response);
@@ -61,7 +53,23 @@ export default class Register extends Component {
 	    			</Col>
 	  			</FormGroup>
 
+	  			<FormGroup controlId="formHorizontalPassword">
+						<Col componentClass={ControlLabel} sm={4}>
+						Password
+					</Col>
+					<Col sm={5}>
+					<FormControl label="Password" placeholder="Password" type="password" name="password" />
+				</Col>
+				</FormGroup>
 
+				<FormGroup controlId="formHorizontalPassword">
+						<Col componentClass={ControlLabel} sm={4}>
+						Confirm Password
+					</Col>
+					<Col sm={5}>
+					<FormControl label="Password" placeholder="Confirm Password" type="password" name="passwordConfirm" />
+				</Col>
+				</FormGroup>
 
 	  			<FormGroup controlId="formHorizontalFirstName">
 	    			<Col componentClass={ControlLabel} sm={4}>
