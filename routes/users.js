@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const connection = require('./../connection');
 var router = express.Router();
+var bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -12,25 +13,33 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // post registration information to MySQL database
-// figuring out: possibly two tables, one for login data and the other for UserData upon log-in
 router.post('/users', function(request, response){
 	var email = request.body.email;
-	// var password = request.body.password;
+	var password = request.body.password;
 	var first = request.body.first;
 	var last= request.body.last;
 	var skills = request.body.skills;
 
-	function addUser(email, first, last, skills){
-		var queryString = "INSERT INTO users(email, first, last, skills) VALUES(?, ?, ?, ?)";
-		connection.query(queryString, [email, first, last, skills], function(err, result) {
-			response.json(result);
-		} )
+	function addUser(email, password, first, last){
 
-	}
+		bcrypt.hash(password, 10, function(err, password) {
+  			var queryString = "INSERT INTO users(email, password, first, last) VALUES(?, ?, ?, ?)";
+			connection.query(queryString, [email, password, first, last], function(err, result) {
+				response.json(result);
+				console.log(password);
+		});
+
+	});
+
+		// var queryStringData = "INSERT INTO userData(skills) VALUES(?)";
+		// connection.query(queryStringData, [skills], function(error, response){
+		// 	response.json(response);
+		// });
+}
 
 	// data obtained from React registration form is printing to console
 	console.log("Reading from post function")
-	addUser(email, first, last, skills);
+	addUser(email, password, first, last);
 })
 
 module.exports = router;
