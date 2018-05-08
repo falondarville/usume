@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Grid, Col, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import './login.css'; 
 
+// add validation, check that user email exists in Users table and password matches
 export default class Login extends Component {
 
   render() {

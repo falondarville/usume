@@ -1,4 +1,3 @@
-// connects Node to MySQL
 var mysql = require('mysql');
 
 // database connection
@@ -16,19 +15,6 @@ connection.connect((err) => {
 		console.log("MySQL connected");
 		}
 });
-
-// this is working
-// connection.query('SELECT * FROM users', function(err, result){
-// if (err){
-// 	throw err
-// } else {
-// 	console.log("Reading from connection.js the items already in database")
-// 	console.log(result[0].email)
-// 	console.log(result[0].first)
-// 	console.log(result[0].last)
-// 	console.log(result[0].skills)
-// 	}
-// })
 
 // export the connection
 module.exports = connection;

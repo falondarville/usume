@@ -1,13 +1,50 @@
+h1, h2 {
+	font-family: 'Gothic A1', sans-serif;
+}
+
 .btn-primary {
 	border: none;
 	background-image: none;
 	background-color: #1060EA;
+	padding: 10px 20px 10px 20px;
 }
 
 .profile-pic {
 	width: 50%;
+	border: none;
+	outline: none;
 }
 
 .jumbotron {
 	background-color: white;
+}
+
+@media only screen and (max-width: 760px) {
+	.hide-people {
+		display: none;
+	}
+}
+
+.why-container {
+	margin-top: 20px;
+}
+
+.group-people {
+	background-color: #DCDCDC;
+}
+
+.img-thumbnail {
+	background-color: #DCDCDC;
+	padding: 0;
+	border-radius: 0;
+}
+
+.col-sm-4 {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+.col-xs-12 {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
 }

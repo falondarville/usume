@@ -7,7 +7,6 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var nodemon = require('nodemon');
 var cors = require('cors')
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -15,7 +14,7 @@ const port = process.env.PORT || 3001;
 
 var app = express();
 
-// view engine setup
+// view engine setup - using React for front-end
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -26,17 +25,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
+// use API routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 
 // bodyParser set up
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.set('port', process.env.PORT || 3001);
-// var server = app.listen(app.get('port'), function() {
-//   console.log('Express server listening on port ' + server.address().port);
-// });
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -49,6 +44,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// listen on port 3001 for dev
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app;
