@@ -1,6 +1,10 @@
 h1, h2, h3 {
 	font-family: 'Gothic A1', sans-serif;
 }
+ 
+h2 {
+	margin-bottom: 40px;
+}
 
 .btn-primary {
 	border: none;
@@ -27,6 +31,11 @@ h1, h2, h3 {
 
 .why-container {
 	margin-top: 30px;
+}
+
+.icon {
+	font-size: 100px;
+
 }
 
 .group-people {
