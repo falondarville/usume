@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import './register.css'; 
@@ -9,13 +8,14 @@ export default class Register extends Component {
 	constructor(){
 		super();
 		this.state = {
-			email: '',
-			password: '',
-			passwordConfirm: '',
-			first: '',
-			last: '',
-			skills: ''
-		};
+				email: '',
+				password: '',
+				passwordConfirm: '',
+				first: '',
+				last: '',
+				skills: '',
+				terms: ''
+		}
 	}
 
 	handleChange = (event) => {
@@ -27,11 +27,11 @@ export default class Register extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const { email, password, passwordConfirm, first, last, skills } = this.state;
+		const { email, password, passwordConfirm, first, last, skills, terms } = this.state;
 
 		//post to Express API
 		axios.post('http://localhost:3001/users', {
-			email, password, passwordConfirm, first, last, skills
+			email, password, passwordConfirm, first, last, skills, terms
   		})
   		.then(function (response) {
     		console.log(response);
@@ -62,7 +62,7 @@ export default class Register extends Component {
 				</Col>
 				</FormGroup>
 
-				<FormGroup controlId="formHorizontalPassword">
+				<FormGroup controlId="formHorizontalPasswordConfirm">
 						<Col componentClass={ControlLabel} sm={4}>
 						Confirm Password
 					</Col>
@@ -100,7 +100,7 @@ export default class Register extends Component {
 
 	  			<FormGroup>
     				<Col smOffset={4} sm={10}>
-      					<Checkbox>I agree to the Terms and Conditions of USUME.</Checkbox>
+      					<Checkbox name="terms">I agree to the Terms and Conditions of USUME.</Checkbox>
    					</Col>
   				</FormGroup>
 
