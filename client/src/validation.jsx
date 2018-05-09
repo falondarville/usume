@@ -28,6 +28,4 @@ const password = (value, props, components) => {
 
 };
 
-// don't allow submit of the form if there are errors/disable button
-
 export {required, email, password, checkLength};

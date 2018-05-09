@@ -22,7 +22,7 @@ router.post('/users', function(request, response){
 
 	function addUser(email, password, first, last){
 
-		// convert to Sequelize and add orm in here
+		// convert to Sequelize and add orm
 		bcrypt.hash(password, 10, function(err, password) {
   			var queryString = "INSERT INTO users(email, password, first, last) VALUES(?, ?, ?, ?)";
 			connection.query(queryString, [email, password, first, last], function(err, result) {

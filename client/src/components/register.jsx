@@ -17,7 +17,8 @@ export default class Register extends Component {
 				passwordConfirm: '',
 				first: '',
 				last: '',
-				skills: ''
+				skills: '', 
+				redirect: false
 		}
 	}
 
@@ -46,21 +47,21 @@ export default class Register extends Component {
 	  		})
 	 		.catch(function (error) {
 	    		console.log(error);
-	  		});
+	  		})
  		}
 	}
 
 	canSubmit = (event) => {
 		const {email, password, passwordConfirm, first, last, skills} = this.state;
-		var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 		return (
 			email.length > 0 &&
-			password.length > 6 &&
+			password.length >= 6 &&
 			passwordConfirm === password &&
-			first.length >1 &&
-			last.length > 1 &&
-			skills.length >1
-		);
+			first.length > 0 &&
+			last.length > 0 &&
+			skills.length > 0
+		)
 	}
 
 	render() {
