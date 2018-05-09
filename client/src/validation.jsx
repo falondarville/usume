@@ -14,4 +14,20 @@ const email = (value) => {
     }
 };
 
-export {required, email};
+const checkLength = (value, props) => {
+    if(value.length < props.minLength) {
+        return <HelpBlock>Password must be at least {props.minLength}  characters long. </HelpBlock>
+    }
+}
+
+const password = (value, props, components) => {
+
+    if(value !== components['password'][0].value) {
+        return <HelpBlock>The passwords must match.</HelpBlock>
+    }
+
+};
+
+// don't allow submit of the form if there are errors/disable button
+
+export {required, email, password, checkLength};
