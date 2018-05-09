@@ -1,10 +1,10 @@
 const express = require('express');
-const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const connection = require('./../connection');
 var router = express.Router();
 var bcrypt = require('bcrypt');
+var db = require('./../models');
 
 const app = express();
 
@@ -14,33 +14,44 @@ app.use(cors());
 
 // post registration information to MySQL database
 router.post('/users', function(request, response){
+
+	// get variables from form input
 	var email = request.body.email;
 	var password = request.body.password;
 	var first = request.body.first;
 	var last= request.body.last;
 	var skills = request.body.skills;
 
-	function addUser(email, password, first, last){
+	// take in variables and add to two tables
+	function addUser(email, password, first, last, skills){
 
-		// convert to Sequelize and add orm
+		// push registration data to Users table after encrypting password
 		bcrypt.hash(password, 10, function(err, password) {
-  			var queryString = "INSERT INTO users(email, password, first, last) VALUES(?, ?, ?, ?)";
-			connection.query(queryString, [email, password, first, last], function(err, result) {
-				response.json(result);
-				console.log(password);
+
+			db.Users.create({
+				email: email,
+				password: password,
+				first: first,
+				last: last
+			}).then(function(data){
+				response.status(200);
+				console.log(data);
+			}).catch(function(error){
+				response.status(500);
+			});
 		});
 
-	});
-
-		// var queryStringData = "INSERT INTO userData(skills) VALUES(?)";
-		// connection.query(queryStringData, [skills], function(error, response){
-		// 	response.json(response);
-		// });
-}
-
-	// data obtained from React registration form is printing to console
-	console.log("Reading from post function")
-	addUser(email, password, first, last);
+		// push registration data to UserData table
+		db.UserData.create({
+			skills: skills
+		}).then(function(data){
+			response.status(200);
+			console.log(data);
+		}).catch(function(error){
+			response.status(500);
+		})
+	}
+	addUser(email, password, first, last, skills);
 })
 
 module.exports = router;

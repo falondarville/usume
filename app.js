@@ -9,6 +9,7 @@ var nodemon = require('nodemon');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var db = require('./models');
 
 const port = process.env.PORT || 3001;
 
@@ -44,7 +45,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// listen on port 3001 for dev
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// listen on port 3001 for dev and sync sequelize
+db.sequelize.sync().then(function(){
+	app.listen(port, () => console.log(`Listening on port ${port}`));
+})
 
 module.exports = app;
