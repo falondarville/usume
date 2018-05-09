@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const connection = require('./../connection');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var db = require('./../models');
@@ -22,6 +21,28 @@ router.post('/users', function(request, response){
 	var last= request.body.last;
 	var skills = request.body.skills;
 
+	function checkEmail(email){
+
+		db.Users.findOne({
+			where: {
+				email: email
+			}
+		}).then(function(data){
+
+			if (data == null){
+				addUser(email, password, first, last, skills);
+			} else {
+				throw {error: 1};
+			}
+			
+		}).catch(function(error){
+
+			response.status(422);
+			response.json({message: "There was an error.", data: {email: "This email is already in use."}})
+			return;
+		})
+	}
+
 	// take in variables and add to two tables
 	function addUser(email, password, first, last, skills){
 
@@ -34,24 +55,26 @@ router.post('/users', function(request, response){
 				first: first,
 				last: last
 			}).then(function(data){
-				response.status(200);
-				console.log(data);
+
+				// push registration data to UserData table
+				db.UserData.create({
+					skills: skills,
+					UserId: data.id
+				}).then(function(data){
+					response.status(200);
+					response.json(data);
+				}).catch(function(error){
+					response.status(500);
+				})
+
 			}).catch(function(error){
 				response.status(500);
 			});
 		});
 
-		// push registration data to UserData table
-		db.UserData.create({
-			skills: skills
-		}).then(function(data){
-			response.status(200);
-			console.log(data);
-		}).catch(function(error){
-			response.status(500);
-		})
+
 	}
-	addUser(email, password, first, last, skills);
+	checkEmail(email);
 })
 
 module.exports = router;
