@@ -30,26 +30,25 @@ export default class Home extends Component {
 					</Col>
 				</Row>
 				<div className="container why-container">
-					<h2>Why USUME?</h2>
 					<Row className="show-grid text center tri-grid">
 						<Col xs={12} sm={4} className="tri-info text-center">
 							<span className="icon-map-signs icon"></span>
 							<h3>Show Your Consistency<br/> of Values</h3>
-							<p>You're not changing who you are from application to application, so your resume should be consistent with your values, your experience, and what you're looking for in a career. USUME allows you to submit one highly-representative version of who you are on paper. </p>
+							<p className="paragraphs">You're not changing who you are from application to application, so your resume should be consistent with your values, your experience, and what you're looking for in a career. USUME allows you to submit one highly-representative version of who you are, and in the process, change the way we apply to, and obtain jobs.</p>
 					
 						</Col>
 						<Col xs={12} sm={4} className="tri-info text-center">
 			
 							<span className="icon-user-circle-o icon"></span>
 							<h3>Get Hired for You,<br/> Not Your Brand</h3>
-							<p>Personal branding can distort who you are in person versus who you are online and on paper. With USUME, you're not branding yourself. You're simply providing a personalized view of the <i>person</i> that employers are looking for. While employment is a contract, it's between people first and foremost.</p>
+							<p className="paragraphs">Personal branding can distort who you are in person versus who you are online and on paper. With USUME, you're not branding yourself. You're simply providing a personalized view of the <i>person</i> that employers are looking for. While employment is a contract, it's between people first and foremost.</p>
 			
 						</Col>
 						<Col xs={12} sm={4} className="tri-info text-center">
 
 							<span className="icon-handshake-o icon"></span>
 							<h3>Establish an Even <br/>Relationship With Employers</h3>
-							<p>Oftentimes, employers seem to have the upperhand in hiring. They get to ask the questions. When you use USUME, you're committing to make yourself an active participant in the hiring process. Future functionality includes pairing you with an employee at the company you're interviewing for, so you can get an inside look at working there from someone other than an interviewer. </p>
+							<p className="paragraphs">Oftentimes, employers seem to have the upperhand in hiring. When you use USUME, you're committing to make yourself an active participant in the hiring process. Future functionality includes pairing you with an employee at the company you're interviewing for, so you can get an alternative look at working there. </p>
 
 						</Col>
 					</Row>
