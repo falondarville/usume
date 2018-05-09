@@ -15,3 +15,10 @@ nav.navbar, .navbar-default {
 .navbar-default .navbar-brand {
 	color: #1060EA;
 }
+
+.logo {
+	max-height: 30px;
+	margin-top: -5px;
+	display: inline-block !important;
+	margin-right: 10px;
+}	

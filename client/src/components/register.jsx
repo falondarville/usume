@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Col, Button, Checkbox, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
+import { Col, Button, Checkbox, ControlLabel, FormGroup } from 'react-bootstrap';
 import './register.css'; 
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import {required, email} from './../validation';
 
 export default class Register extends Component {
 
@@ -43,13 +46,13 @@ export default class Register extends Component {
 
 	render() {
 		return (
-			<Form horizontal onSubmit={this.handleSubmit}>
+			<Form className={"form-horizontal"} onSubmit={this.handleSubmit}>
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="email" placeholder="Email" name="email" onChange={this.handleChange} />
+	      				<Input className="form-control" type="email" placeholder="Email" name="email" onChange={this.handleChange} validations={[required, email]} />
 	    			</Col>
 	  			</FormGroup>
 
@@ -58,7 +61,7 @@ export default class Register extends Component {
 						Password
 					</Col>
 					<Col sm={5}>
-					<FormControl label="Password" placeholder="Password" type="password" name="password" />
+					<Input className="form-control" label="Password" placeholder="Password" type="password" name="password" onChange={this.handleChange} validations={[required]} />
 				</Col>
 				</FormGroup>
 
@@ -67,7 +70,7 @@ export default class Register extends Component {
 						Confirm Password
 					</Col>
 					<Col sm={5}>
-					<FormControl label="Password" placeholder="Confirm Password" type="password" name="passwordConfirm" />
+					<Input className="form-control" label="Password" placeholder="Confirm Password" type="password" name="passwordConfirm" onChange={this.handleChange} validations={[required]} />
 				</Col>
 				</FormGroup>
 
@@ -76,7 +79,7 @@ export default class Register extends Component {
 						First Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="First Name" name="first" onChange={this.handleChange}/>
+	      				<Input className="form-control" type="text" placeholder="First Name" name="first" onChange={this.handleChange}/>
 	    			</Col>
 	  			</FormGroup>
 
@@ -85,7 +88,7 @@ export default class Register extends Component {
 					Last Name
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl type="text" placeholder="Last Name" name="last" onChange={this.handleChange}/>
+	      				<Input className="form-control" type="text" placeholder="Last Name" name="last" onChange={this.handleChange}/>
 	    			</Col>
 	  			</FormGroup>
 
@@ -94,7 +97,7 @@ export default class Register extends Component {
 					List your skills, each of them separated by a comma.
 	    		</Col>
 	    		<Col sm={5}>
-	      				<FormControl componentClass="textarea" placeholder="Skills" name="skills" onChange={this.handleChange} />
+	      				<Input className="form-control" componentClass="textarea" placeholder="Skills" name="skills" onChange={this.handleChange} />
 	    			</Col>
 	  			</FormGroup>
 
