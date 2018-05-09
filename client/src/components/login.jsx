@@ -1,21 +1,73 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Grid, Col, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
+import { Grid, Col, Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import {required, email} from './../validation';
 import './login.css'; 
 
 // add validation, check that user email exists in Users table and password matches
 export default class Login extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      email: '',
+      password: '',
+      redirect: false
+    }
+  }
+
+  handleChange = (event) => {
+    const state = this.state;
+    state[event.target.name] = event.target.value;
+    this.setState(state, () => console.log(this.state));
+    console.log(event.target.value);
+  }
+
+  handleSubmit = (event) => {
+
+    if(!this.canSubmit()) {
+      event.preventDefault();
+      return;
+    } else {
+      event.preventDefault();
+      const { email, password, redirect } = this.state;
+      let self = this;
+      //post to Express API
+      axios.post('http://localhost:3001/users', {
+        email, password, redirect
+        })
+        .then(function(data){
+          console.log(data);
+          // redirect to the log-in page when form is successfully submitted
+          self.setState({ redirect: true });
+        })
+      .catch(function (error) {
+        console.log(error)
+        // print the errors to the page using react-validation 
+        // this email is already in use, please log-in
+        })
+    }
+  }
+
   render() {
+
+    const { from } = this.props.location.state || '/'
+    const { redirect } = this.state
+
     return (
+      <div>
     	<Grid>
-    	<Form horizontal>
+    	<Form className={"form-horizontal"}>
   			<FormGroup controlId="formHorizontalEmail">
     			<Col componentClass={ControlLabel} sm={4}>
 					Email
     		</Col>
     		<Col sm={5}>
-      				<FormControl type="email" placeholder="Email" />
+      				<Input className="form-control" type="email" placeholder="Email" name="email" onChange={this.handleChange} validations={[required, email]} />
     			</Col>
   			</FormGroup>
 
@@ -24,7 +76,7 @@ export default class Login extends Component {
       			Password
     		</Col>
     		<Col sm={5}>
-      		<FormControl type="password" placeholder="Password" />
+      		<Input className="form-control" type="password" placeholder="Password" name="password" onChange={this.handleChange} validations={[required]}/>
     		</Col>
   			</FormGroup>
 
@@ -39,6 +91,8 @@ export default class Login extends Component {
 		<p>Don't have an account? <Link to="/register">Register Here.</Link></p>
     </Col>
     	</Grid>
+    {redirect && (<Redirect to={from || '/loggedin'}/>)}
+    </div>
     );
   }
 }
