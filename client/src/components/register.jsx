@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import { Col, Button, ControlLabel, FormGroup } from 'react-bootstrap';
 import './register.css'; 
 import Form from 'react-validation/build/form';
@@ -36,17 +37,21 @@ export default class Register extends Component {
 			return;
 		} else {
 			event.preventDefault();
-			const { email, password, passwordConfirm, first, last, skills, terms } = this.state;
-
+			const { email, password, passwordConfirm, first, last, skills, terms, redirect } = this.state;
+			let self = this;
 			//post to Express API
 			axios.post('http://localhost:3001/users', {
-				email, password, passwordConfirm, first, last, skills, terms
+				email, password, passwordConfirm, first, last, skills, terms, redirect
 	  		})
-	  		.then(function (response) {
-	    		console.log(response);
+	  		.then(function(data){
+	  			console.log(data);
+	  			// redirect to the log-in page when form is successfully submitted
+	  			self.setState({ redirect: true });
 	  		})
 	 		.catch(function (error) {
-	    		console.log(error);
+	 			console.log(error)
+	 			// print the errors to the page using react-validation 
+	 			// this email is already in use, please log-in
 	  		})
  		}
 	}
@@ -68,8 +73,12 @@ export default class Register extends Component {
 
 		const isEnabled = this.canSubmit();
 
+		const { from } = this.props.location.state || '/'
+    	const { redirect } = this.state
+
 		return (
-			<Form className={"form-horizontal"} onSubmit={this.handleSubmit}>
+			<div>
+			<Form className={"form-horizontal"} onSubmit={this.handleSubmit.bind(this)}>
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email
@@ -136,6 +145,8 @@ export default class Register extends Component {
     				</Col>
   			</FormGroup>
 			</Form>
+		{redirect && (<Redirect to={from || '/login'}/>)}
+		</div>
 		)
 	}
 }
