@@ -148,7 +148,7 @@ export default class Register extends Component {
     				</Col>
   			</FormGroup>
 			</Form>
-		{redirect && (<Redirect to={from || '/login'}/>)}
+		{redirect && (<Redirect to={{ pathname: '/login', state: { message: "Thank you for registering. Please sign in."}}}/>)}
 		</div>
 		)
 	}

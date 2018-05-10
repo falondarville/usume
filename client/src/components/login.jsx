@@ -55,6 +55,8 @@ export default class Login extends Component {
 
   render() {
 
+    const registerMessage = this.props.location.state ? this.props.location.state.message : false;
+
     const { from } = this.props.location.state || '/'
     const { redirect } = this.state
 
@@ -63,6 +65,7 @@ export default class Login extends Component {
     	<Grid>
     	<Form className={"form-horizontal"}>
   			<FormGroup controlId="formHorizontalEmail">
+          {registerMessage && <p className="text-center thank-you"> {registerMessage}</p>}
     			<Col componentClass={ControlLabel} sm={4}>
 					Email
     		</Col>
