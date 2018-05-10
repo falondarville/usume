@@ -41,26 +41,6 @@ router.post('/login', function(request, response){
 			return;
 		})
 	}
-
-	function loginUser(email, password){
-
-		bcrypt.hash(password, 10, function(err, password) {
-
-			db.Users.create({
-				email: email,
-				password: password,
-				first: first,
-				last: last
-			}).then(function(data){
-				response.status(200);
-				response.json(data);
-			}).catch(function(error){
-				response.status(500);
-			});
-		});
-
-
-	}
 	checkEmail(email);
 })
 
