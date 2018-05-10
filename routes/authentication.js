@@ -50,18 +50,8 @@ router.post('/login', function(request, response){
 				first: first,
 				last: last
 			}).then(function(data){
-
-				// push registration data to UserData table
-				db.UserData.create({
-					skills: skills,
-					UserId: data.id
-				}).then(function(data){
-					response.status(200);
-					response.json(data);
-				}).catch(function(error){
-					response.status(500);
-				})
-
+				response.status(200);
+				response.json(data);
 			}).catch(function(error){
 				response.status(500);
 			});

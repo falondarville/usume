@@ -60,6 +60,15 @@ export default class Home extends Component {
 	  					</p>
 					</div>
 				</Jumbotron>
+				<Jumbotron className="jumbotron-fluid">
+					<div className="container-fluid text-center">
+	  					<p>You know your values. Now tell employers what they are. 
+	  					</p>
+	  					<Link to='/register'>
+							<Button bsStyle='primary'>Get Started</Button>
+						</Link>
+					</div>
+				</Jumbotron>
 			</Grid>
 		)
 	}

@@ -29,28 +29,25 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
 
-    if(!this.canSubmit()) {
-      event.preventDefault();
-      return;
-    } else {
-      event.preventDefault();
-      const { email, password, redirect } = this.state;
-      let self = this;
-      //post to Express API
-      axios.post('http://localhost:3001/users', {
-        email, password, redirect
-        })
-        .then(function(data){
-          console.log(data);
-          // redirect to the log-in page when form is successfully submitted
-          self.setState({ redirect: true });
-        })
-      .catch(function (error) {
-        console.log(error)
-        // print the errors to the page using react-validation 
-        // this email is already in use, please log-in
-        })
-    }
+    event.preventDefault();
+
+    const { email, password, redirect } = this.state;
+    let self = this;
+
+    //post to Express API
+    axios.post('http://localhost:3001/login', {
+      email, password, redirect
+      })
+      .then(function(data){
+        console.log(data);
+        // redirect to the log-in page when form is successfully submitted
+        self.setState({ redirect: true });
+      })
+    .catch(function (error) {
+      console.log(error)
+      // print the errors to the page using react-validation 
+      // the credentials you provided are invalid
+      })
   }
 
   render() {

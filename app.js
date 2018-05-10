@@ -9,6 +9,7 @@ var nodemon = require('nodemon');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var loginRouter = require('./routes/authentication');
 var db = require('./models');
 
 const port = process.env.PORT || 3001;
@@ -24,6 +25,7 @@ app.use(cors());
 // use API routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', loginRouter);
 
 // bodyParser set up
 app.use(bodyParser.json());
