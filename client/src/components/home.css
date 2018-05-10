@@ -63,8 +63,12 @@ h2 {
 	background-color: lightgreen;
 }
 
-.callAction {
-	background-color: #DCDCDC;
-	height: 200px;
-	margin-top: 40px;
+.call-to-action {
+	margin-top: 60px;
+	background-color: #F8F8F5;
+}
+
+.container-fluid {
+	padding-right: 0;
+	padding-left: 0;
 }

@@ -49,10 +49,17 @@ export default class Home extends Component {
 							<span className="icon-handshake-o icon"></span>
 							<h3>Establish an Even <br/>Relationship With Employers</h3>
 							<p className="paragraphs">Oftentimes, employers seem to have the upperhand in hiring. When you use USUME, you're committing to make yourself an active participant in the hiring process. Future functionality includes pairing you with an employee at the company you're interviewing for, so you can get an alternative look at working there. </p>
-
 						</Col>
 					</Row>
 				</div>
+				<Jumbotron className="call-to-action jumbotron-fluid">
+					<div className="container-fluid">
+	  					<h2><b>Part of the hiring process at an organization?</b></h2>
+	  					<p>
+	    				We're developing features that will allow you to prevent discriminatory practices by taking away gender, race, and other identifiers off of resumes during the preliminary narrowing processes.
+	  					</p>
+					</div>
+				</Jumbotron>
 			</Grid>
 		)
 	}
