@@ -12,14 +12,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // post registration information to MySQL database
-router.post('/users', function(request, response){
+router.post('/login', function(request, response){
 
 	// get variables from form input
 	var email = request.body.email;
 	var password = request.body.password;
-	var first = request.body.first;
-	var last= request.body.last;
-	var skills = request.body.skills;
 
 	function checkEmail(email){
 
@@ -30,7 +27,7 @@ router.post('/users', function(request, response){
 		}).then(function(data){
 
 			if (data == null){
-				addUser(email, password, first, last, skills);
+				loginUser(email, password);
 			} else {
 				throw {error: 1};
 			}
@@ -38,15 +35,13 @@ router.post('/users', function(request, response){
 		}).catch(function(error){
 
 			response.status(422);
-			response.json({message: "There was an error.", data: {email: "This email is already in use."}})
+			response.json({message: "There was an error.", data: {invalid: "Invalid credentials."}})
 			return;
 		})
 	}
 
-	// take in variables and add to two tables
-	function addUser(email, password, first, last, skills){
+	function loginUser(email, password){
 
-		// push registration data to Users table after encrypting password
 		bcrypt.hash(password, 10, function(err, password) {
 
 			db.Users.create({
@@ -78,4 +73,3 @@ router.post('/users', function(request, response){
 })
 
 module.exports = router;
-
