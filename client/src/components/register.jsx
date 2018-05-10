@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
-import { Col, Button, ControlLabel, FormGroup } from 'react-bootstrap';
+import { Col, Button, ControlLabel, FormGroup, HelpBlock } from 'react-bootstrap';
 import './register.css'; 
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -19,7 +19,8 @@ export default class Register extends Component {
 				first: '',
 				last: '',
 				skills: '', 
-				redirect: false
+				redirect: false,
+				serverErrors: {}
 		}
 	}
 
@@ -37,11 +38,11 @@ export default class Register extends Component {
 			return;
 		} else {
 			event.preventDefault();
-			const { email, password, passwordConfirm, first, last, skills, terms, redirect } = this.state;
+			const { email, password, passwordConfirm, first, last, skills, terms, redirect , serverErrors } = this.state;
 			let self = this;
 			//post to Express API
 			axios.post('http://localhost:3001/users', {
-				email, password, passwordConfirm, first, last, skills, terms, redirect
+				email, password, passwordConfirm, first, last, skills, terms, redirect, serverErrors
 	  		})
 	  		.then(function(data){
 	  			console.log(data);
@@ -50,8 +51,9 @@ export default class Register extends Component {
 	  		})
 	 		.catch(function (error) {
 	 			console.log(error)
-	 			// print the errors to the page using react-validation 
-	 			// this email is already in use, please log-in
+
+				// this email is already in use
+	 			self.setState({ serverErrors: error.response.data.data });	 			
 	  		})
  		}
 	}
@@ -142,6 +144,7 @@ export default class Register extends Component {
 	  			 <FormGroup>
    				 	<Col smOffset={4} sm={10}>
       					<Button disabled={!isEnabled} bsStyle='primary' type="submit">Register</Button>
+      					{this.state.serverErrors.email && <HelpBlock>{this.state.serverErrors.email}</HelpBlock>}
     				</Col>
   			</FormGroup>
 			</Form>
