@@ -35,18 +35,22 @@ export default class Login extends Component {
     let self = this;
 
     //post to Express API
-    axios.post('http://localhost:3001/login', {
-      email, password, redirect
-      })
+    axios.post('http://localhost:3001/login', 
+      passport.authenticate('local', {
+          successRedirect: '/loggedin',
+          failureRedirect: '/login',
+          failureFlash: true
+      }))
       .then(function(data){
         console.log(data);
         // redirect to the log-in page when form is successfully submitted
         self.setState({ redirect: true });
       })
-    .catch(function (error) {
-      console.log(error)
-      // print the errors to the page using react-validation 
-      // the credentials you provided are invalid
+      .catch(function (error) {
+        console.log(error)
+        // print the errors to the page using react-validation 
+        // the credentials you provided are invalid
+        self.setState({ serverErrors: error.response.data.data });
       })
   }
 

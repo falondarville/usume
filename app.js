@@ -7,6 +7,8 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var nodemon = require('nodemon');
 var cors = require('cors')
+var passport = require('passport')
+  	, LocalStrategy = require('passport-local').Strategy;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/authentication');
@@ -30,6 +32,25 @@ app.use('/', loginRouter);
 // bodyParser set up
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// passport log in authentication
+passport.use(new LocalStrategy({
+	usernameField: 'email',
+	passwordField: 'password'
+},
+  function(username, password, done) {
+    Users.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect email.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
 
 // error handler
 app.use(function(err, req, res, next) {
