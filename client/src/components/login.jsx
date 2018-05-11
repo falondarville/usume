@@ -35,6 +35,7 @@ export default class Login extends Component {
 
     //post to Express API
     axios.post('http://localhost:3001/login', {
+      // sending as params not body
       email, password
       })
       .then(function(data){
@@ -57,7 +58,7 @@ export default class Login extends Component {
     return (
       <div>
     	<Grid>
-    	<Form className={"form-horizontal"}>
+    	<Form className={"form-horizontal"} onSubmit={this.handleSubmit.bind(this)}>
   			<FormGroup controlId="formHorizontalEmail">
           {registerMessage && <p className="text-center thank-you"> {registerMessage}</p>}
     			<Col componentClass={ControlLabel} sm={4}>
