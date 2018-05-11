@@ -6,6 +6,8 @@ import './loggedin.css';
 // GET from UserData table and display once the user has logged in
 export default class LoggedIn extends Component {
 
+	// if not logged in, redirect to login page
+
 	// axios.get('http://localhost:3001/index', {
 	// 	email, password, passwordConfirm, first, last, skills, terms, redirect
 	// 	}

@@ -25,32 +25,6 @@ export default class Login extends Component {
     console.log(event.target.value);
   }
 
-  handleSubmit = (event) => {
-
-    console.log("This is handleSubmit.")
-    event.preventDefault();
-
-    const { email, password } = this.state;
-    let self = this;
-
-    //post to Express API
-    axios.post('http://localhost:3001/login', {
-      // sending as params not body
-      email, password
-      })
-      .then(function(data){
-        console.log(data);
-        // redirect to the logged-in page when form is successfully submitted
-        // passport may handle this
-      })
-    .catch(function (error) {
-      console.log(error)
-
-      // the credentials you provided are invalid
-      // self.setState({ serverErrors: error.response.data.data });        
-      })
-  }
-
   render() {
 
     const registerMessage = this.props.location.state ? this.props.location.state.message : false;
@@ -58,7 +32,7 @@ export default class Login extends Component {
     return (
       <div>
     	<Grid>
-    	<Form className={"form-horizontal"} onSubmit={this.handleSubmit.bind(this)}>
+    	<Form className={"form-horizontal"} method="post">
   			<FormGroup controlId="formHorizontalEmail">
           {registerMessage && <p className="text-center thank-you"> {registerMessage}</p>}
     			<Col componentClass={ControlLabel} sm={4}>

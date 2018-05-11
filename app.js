@@ -33,6 +33,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function(user, done){
+  done(null, user.id);
+})
+
+passport.deserializeUser(function(id, done){
+  db.Users.findById(id).then(function(user){
+    if(user){
+      done(null, user.get());
+    } else {
+      done(user.errors, null);
+    }
+  })
+})
+
 // use API routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
