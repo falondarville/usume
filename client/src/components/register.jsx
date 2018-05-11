@@ -52,7 +52,7 @@ export default class Register extends Component {
 	 		.catch(function (error) {
 	 			console.log(error)
 
-				// this email is already in use
+				// this email is already in use error shows up under the submit button
 	 			self.setState({ serverErrors: error.response.data.data });	 			
 	  		})
  		}
@@ -74,8 +74,6 @@ export default class Register extends Component {
 	render() {
 
 		const isEnabled = this.canSubmit();
-
-		const { from } = this.props.location.state || '/'
     	const { redirect } = this.state
 
 		return (

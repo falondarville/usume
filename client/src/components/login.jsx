@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
 import { Grid, Col, Button, FormGroup, ControlLabel } from 'react-bootstrap';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -15,8 +14,7 @@ export default class Login extends Component {
     super();
     this.state = {
       email: '',
-      password: '',
-      redirect: false
+      password: ''
     }
   }
 
@@ -29,33 +27,32 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
 
+    console.log("This is handleSubmit.")
     event.preventDefault();
 
-    const { email, password, redirect } = this.state;
+    const { email, password } = this.state;
     let self = this;
 
     //post to Express API
     axios.post('http://localhost:3001/login', {
-      email, password, redirect
+      email, password
       })
       .then(function(data){
         console.log(data);
-        // redirect to the log-in page when form is successfully submitted
-        self.setState({ redirect: true });
+        // redirect to the logged-in page when form is successfully submitted
+        // passport may handle this
       })
     .catch(function (error) {
       console.log(error)
-      // print the errors to the page using react-validation 
+
       // the credentials you provided are invalid
+      self.setState({ serverErrors: error.response.data.data });        
       })
   }
 
   render() {
 
     const registerMessage = this.props.location.state ? this.props.location.state.message : false;
-
-    const { from } = this.props.location.state || '/'
-    const { redirect } = this.state
 
     return (
       <div>
@@ -91,7 +88,6 @@ export default class Login extends Component {
 		<p>Don't have an account? <Link to="/register">Register Here.</Link></p>
     </Col>
     	</Grid>
-    {redirect && (<Redirect to={from || '/loggedin'}/>)}
     </div>
     );
   }

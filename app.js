@@ -39,18 +39,24 @@ passport.use(new LocalStrategy({
 	passwordField: 'password'
 },
   function(username, password, done) {
-    Users.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+    db.Users.findOne({ 
+        username: username 
+      }).then(function(user){
+        console.log("THIS IS FROM PASSPORT", user)
+        if (user ==null) {
+          return done(null, false, {message: 'Incorrect credentials'})
+        }
+
+        var hashedPassword = bcrypt.hashSync(password, user.salt)
+
+        if(user.password === hashedPassword){
+          return done(null, user)
+        }
+
+        return done(null, false, {message: 'Incorrect credentials'})
+        })
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+    ))
 
 // error handler
 app.use(function(err, req, res, next) {

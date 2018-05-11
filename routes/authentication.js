@@ -15,38 +15,9 @@ app.use(cors());
 
 // post registration information to MySQL database
 router.post('/login',
- passport.authenticate('local', { successRedirect: '/loggedin',
-                                  failureRedirect: '/login',
+ passport.authenticate('local', { successRedirect: 'http://localhost:3001/loggedin',
+                                  failureRedirect: 'http://localhost:3001/login',
                                   failureFlash: true })
 );
-// router.post('/login', function(request, response){
-
-// 	// get variables from form input
-// 	var email = request.body.email;
-// 	var password = request.body.password;
-
-// 	function checkEmail(email){
-
-// 		db.Users.findOne({
-// 			where: {
-// 				email: email
-// 			}
-// 		}).then(function(data){
-
-// 			if (data == null){
-// 				loginUser(email, password);
-// 			} else {
-// 				throw {error: 1};
-// 			}
-			
-// 		}).catch(function(error){
-
-// 			response.status(422);
-// 			response.json({message: "There was an error.", data: {invalid: "Invalid credentials."}})
-// 			return;
-// 		})
-// 	}
-// 	checkEmail(email);
-// })
 
 module.exports = router;
