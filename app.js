@@ -7,6 +7,8 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var nodemon = require('nodemon');
 var cors = require('cors')
+var bcrypt = require('bcrypt');
+var session = require('express-session');
 var passport = require('passport')
   	, LocalStrategy = require('passport-local').Strategy;
 var indexRouter = require('./routes/index');
@@ -23,6 +25,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+app.use(session({
+  secret: "cactus mom"
+}));
+
+// passport initialize
+app.use(passport.initialize());
+app.use(passport.session());
 
 // use API routes
 app.use('/', indexRouter);
@@ -40,20 +49,19 @@ passport.use(new LocalStrategy({
 },
   function(username, password, done) {
     db.Users.findOne({ 
-        username: username 
+      where:{ email: username }
       }).then(function(user){
         console.log("THIS IS FROM PASSPORT", user)
         if (user ==null) {
           return done(null, false, {message: 'Incorrect credentials'})
         }
-
-        var hashedPassword = bcrypt.hashSync(password, user.salt)
-
-        if(user.password === hashedPassword){
-          return done(null, user)
-        }
-
-        return done(null, false, {message: 'Incorrect credentials'})
+        bcrypt.compare(password, user.password, function(err, res){
+          if(res) {
+              done(null, user)
+          } else {
+              done(null, false, { message: 'Incorrect password.' })
+          }
+      });
         })
       }
     ))
@@ -66,7 +74,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({err});
 });
 
 // listen on port 3001 for dev and sync sequelize
