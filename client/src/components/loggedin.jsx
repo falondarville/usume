@@ -7,6 +7,7 @@ import './loggedin.css';
 export default class LoggedIn extends Component {
 
 	// if not logged in, redirect to login page
+	// use the email that the user logged in with 
 
 	// axios.get('http://localhost:3001/index', {
 	// 	email, password, passwordConfirm, first, last, skills, terms, redirect

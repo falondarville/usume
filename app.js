@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use(cors());
 app.use(session({
   secret: "cactus mom"
+  // resave: true
 }));
 
 // passport initialize

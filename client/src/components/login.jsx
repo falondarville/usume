@@ -7,7 +7,6 @@ import Input from 'react-validation/build/input';
 import {required, email} from './../validation';
 import './login.css'; 
 
-// add validation, check that user email exists in Users table and password matches
 export default class Login extends Component {
 
   constructor(){
