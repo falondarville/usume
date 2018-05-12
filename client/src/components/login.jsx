@@ -41,7 +41,7 @@ export default class Login extends Component {
       console.log(error)
 
       // invalid credentials
-      self.setState({ serverErrors: error.response.data.data });        
+      // self.setState({ serverErrors: error.response.data.data });        
       })
     }
 

@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport')
   	, LocalStrategy = require('passport-local').Strategy;
-var router = express.Router();
-var bcrypt = require('bcrypt');
-var db = require('./../models');
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const db = require('./../models');
 
 const app = express();
 

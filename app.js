@@ -1,33 +1,37 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mysql = require('mysql');
-var nodemon = require('nodemon');
-var cors = require('cors')
-var bcrypt = require('bcrypt');
-var session = require('express-session');
-var passport = require('passport')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mysql = require('mysql');
+const nodemon = require('nodemon');
+const cors = require('cors')
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const passport = require('passport')
   	, LocalStrategy = require('passport-local').Strategy;
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/authentication');
-var db = require('./models');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/authentication');
+const authRouter = require('./routes/authUser');
+const db = require('./models');
 
 const port = process.env.PORT || 3001;
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use(session({
-  secret: "cactus mom"
-  // resave: true
+  secret: "cactus mom",
+  resave: true,
+  name: "chocolateChip",
+  proxy: true,
+  saveUninitialized: true
 }));
 
 // passport initialize and serialize
@@ -39,7 +43,9 @@ passport.serializeUser(function(user, done){
 })
 
 passport.deserializeUser(function(id, done){
+  console.error('tryndnddnd');
   db.Users.findById(id).then(function(user){
+    console.log("we found the user");
     if(user){
       done(null, user.get());
     } else {
@@ -52,6 +58,7 @@ passport.deserializeUser(function(id, done){
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', loginRouter);
+app.use('/', authRouter);
 
 // bodyParser set up
 app.use(bodyParser.json());

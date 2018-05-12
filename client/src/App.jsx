@@ -5,6 +5,7 @@ import Home from './components/home';
 import Register from './components/register';
 import Login from './components/login';
 import Navbar from './components/CustomNavbar';
+import LoggedIn from './components/loggedin';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
+          <Route path='/loggedin' component={LoggedIn} />
           <Route path='*' component={Home} />
         </Switch>
       </div>
