@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { Form, Jumbotron, Grid, Row, Col, Image, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { div } from 'react-bootstrap';
 import './loggedin.css'; 
 
 
@@ -50,7 +50,7 @@ export default class LoggedIn extends Component {
 			return <div></div>
 		} else {
 			return (<div>
-				<h2>The resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
+				<h2 className="text-center resume-header">The resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
 					<p>Skills: {this.state.user.skills} </p>
 				</div>);
 		}
