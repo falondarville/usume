@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
-// post registration information to MySQL database
+// this is the authentication for the registration form
 router.post('/login',
 // check if sending through params or body, needs to send through body so it doesn't appear in the URL
  passport.authenticate('local', { successRedirect: '/loggedin',
