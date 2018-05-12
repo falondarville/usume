@@ -24,27 +24,6 @@ export default class Login extends Component {
     console.log(event.target.value);
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { email, password } = this.state;
-    let self = this;
-    //post to Express API
-    axios.post('http://localhost:3001/authuser', {
-      email, password
-      })
-      .then(function(data){
-        console.log(data);
-        // passport is handling redirect, need to add validation
-      })
-    .catch(function (error) {
-      console.log(error)
-
-      // invalid credentials
-      // self.setState({ serverErrors: error.response.data.data });        
-      })
-    }
-
   render() {
 
     const registerMessage = this.props.location.state ? this.props.location.state.message : false;

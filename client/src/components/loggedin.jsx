@@ -4,21 +4,6 @@ import axios from 'axios';
 import { Form, Jumbotron, Grid, Row, Col, Image, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import './loggedin.css'; 
 
-// if not logged in, redirect to login page
-	// use the email that the user logged in with 
-
-	// axios.get('http://localhost:3001/index', {
-	// 	email, password, passwordConfirm, first, last, skills, terms, redirect
-	// 	}
-	// .then(function(data){
-	// 	console.log(data);
-
-	// })
-	// .catch(function (error) {
-	// 	console.log(error)
-
-	// })
-
 // GET from UserData table and display once the user has logged in
 export default class LoggedIn extends Component {
 
@@ -28,13 +13,26 @@ export default class LoggedIn extends Component {
 		user: {
 			firstName: '',
 			lastName: '',
+			email: '',
 			skills: ''
 		}
 		};
+
+		var self = this;
+
 		axios.post('/authuser').then(function(data){
-			console.log(data);
+			
+			// update state
+			const userData = data.data
+			self.setState({
+				user: {
+					firstName: userData.firstName,
+					lastName: userData.lastName,
+					email: userData.email
+				}
+			})
 		}).catch(function(error){
-			console.log(error);
+			// redirect to login page
 		})
 	}
 

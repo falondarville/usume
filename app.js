@@ -43,9 +43,7 @@ passport.serializeUser(function(user, done){
 })
 
 passport.deserializeUser(function(id, done){
-  console.error('tryndnddnd');
   db.Users.findById(id).then(function(user){
-    console.log("we found the user");
     if(user){
       done(null, user.get());
     } else {
