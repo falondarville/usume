@@ -30,7 +30,7 @@ app.use(session({
   // resave: true
 }));
 
-// passport initialize
+// passport initialize and serialize
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -4,7 +4,7 @@ The Universal Resume
 
 ## Technologies and Methodologies Used
 
-HTML/CSS, Bootstrap 4, JavaScript, React.js, Express.js, Node.js, MySQL, MVC
+HTML/CSS, JavaScript, React.js, Express.js, Node.js, MySQL, MVC, axios, react-bootstrap, react-router
 
 ## Challenges and Learning Summary
 
