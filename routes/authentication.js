@@ -17,7 +17,7 @@ app.use(cors());
 router.post('/login',
 // check if sending through params or body, needs to send through body so it doesn't appear in the URL
  passport.authenticate('local', { successRedirect: '/loggedin',
-                                  failureRedirect: '/login'
+                                  failureRedirect: '/login?invalid=true'
                                   })
 );
 

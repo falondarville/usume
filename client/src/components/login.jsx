@@ -20,7 +20,6 @@ export default class Login extends Component {
     const state = this.state;
     state[event.target.name] = event.target.value;
     this.setState(state, () => console.log(this.state));
-    console.log(event.target.value);
   }
 
   render() {

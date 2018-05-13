@@ -98,7 +98,7 @@ app.use(function(err, req, res, next) {
 });
 
 // listen on port 3001 for dev and sync sequelize
-db.sequelize.sync({force: true}).then(function(){
+db.sequelize.sync().then(function(){
 	app.listen(port, () => console.log(`Listening on port ${port}`));
 })
 

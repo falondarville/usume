@@ -68,9 +68,21 @@ export default class LoggedIn extends Component {
 		} else {
 			return (<div className="container">
 				<Link className="pull-right" to="/logout">Log out</Link>
-				<h2 className="text-center resume-header">The Resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
-					<p><b>Contact: </b>{this.state.user.email} </p>
+				<h1 className="text-center resume-header">{this.state.user.firstName} {this.state.user.lastName} </h1>
+					<hr />
+					<p className="text-center">{this.state.user.email} </p>
+
+					<div className="container body-container">
 					<p><b>Skills: </b> {this.state.user.skills} </p>
+					<p><b>Requested Title: </b> {this.state.user.title}</p>
+					<p>{this.state.user.environment}</p>
+					<p>{this.state.user.relationships}</p>
+					<p>{this.state.user.priorities}</p>
+					<p>{this.state.user.personality}</p>
+					<p>{this.state.user.workGoals}</p>
+					<p>{this.state.user.lifeGoals}</p>
+					<p>{this.state.user.accomodations}</p>
+					</div>
 				</div>);
 		}
 
