@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { div } from 'react-bootstrap';
 import './loggedin.css'; 
@@ -51,6 +51,7 @@ export default class LoggedIn extends Component {
 			return <div></div>
 		} else {
 			return (<div className="container">
+				<Link className="pull-right" to="/logout">Log out</Link>
 				<h2 className="text-center resume-header">The Resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
 					<p><b>Contact: </b>{this.state.user.email} </p>
 					<p><b>Skills: </b> {this.state.user.skills} </p>
