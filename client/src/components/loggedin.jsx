@@ -30,12 +30,13 @@ export default class LoggedIn extends Component {
 				user: {
 					firstName: userData.firstName,
 					lastName: userData.lastName,
-					email: userData.email
+					email: userData.email,
+					skills: userData.skills
 				}
 			})
 
 		}).catch(function(error){
-			// redirect to login page
+			// redirect to login page if not logged in
 			self.setState({ redirectToLogin: true });
 		})
 	}
@@ -49,9 +50,10 @@ export default class LoggedIn extends Component {
 		} else if(this.state.user.firstName === false) {
 			return <div></div>
 		} else {
-			return (<div>
-				<h2 className="text-center resume-header">The resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
-					<p>Skills: {this.state.user.skills} </p>
+			return (<div className="container">
+				<h2 className="text-center resume-header">The Resume of {this.state.user.firstName} {this.state.user.lastName} </h2>
+					<p><b>Contact: </b>{this.state.user.email} </p>
+					<p><b>Skills: </b> {this.state.user.skills} </p>
 				</div>);
 		}
 

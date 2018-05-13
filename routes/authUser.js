@@ -8,15 +8,18 @@ const app = express();
 
 app.use(cors());
 
-// this is a post route that allows us to grab the data from the form to query the database
 router.post('/authuser', function(request, response){
-	// passport get current user
-
 	if(request.user) {
-		response.json({
-			firstName: request.user.first,
-			lastName: request.user.last,
-			email: request.user.email
+		// query the second table
+		db.UserData.find({
+			where: {userId: request.user.id}
+		}).then(function(data){
+			response.json({
+				skills: data.skills,
+				firstName: request.user.first,
+				lastName: request.user.last,
+				email: request.user.email
+			})
 		})
 	} else {
 		response.status(401);
