@@ -1,3 +1,31 @@
 .resume-header {
 	margin-top: 40px;
 }
+
+.well-styling {
+	background-color: white !important;
+}
+
+.well {
+	background-image: none;
+}
+
+.email-styling {
+	margin-bottom: 30px;
+}
+
+.overview {
+	color: #00B200;
+}
+
+.goals {
+	color: #4682B4;
+}
+
+.workplace {
+	color: #5E2D79;
+}
+
+.personality {
+	color: #7E7E7E;
+}
