@@ -19,6 +19,14 @@ export default class Register extends Component {
 				first: '',
 				last: '',
 				skills: '', 
+				title: '',
+				environment: '',
+				relationships: '',
+				priorities: '',
+				personality: '',
+				workGoals: '',
+				lifeGoals: '',
+				accomodations: '',
 				redirect: false,
 				serverErrors: {}
 		}
@@ -38,11 +46,11 @@ export default class Register extends Component {
 			return;
 		} else {
 			event.preventDefault();
-			const { email, password, passwordConfirm, first, last, skills, terms, redirect , serverErrors } = this.state;
+			const { email, password, passwordConfirm, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations, redirect , serverErrors } = this.state;
 			let self = this;
 			//post to Express API
 			axios.post('http://localhost:3001/users', {
-				email, password, passwordConfirm, first, last, skills, terms, redirect, serverErrors
+				email, password, passwordConfirm, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations, redirect, serverErrors
 	  		})
 	  		.then(function(data){
 	  			console.log(data);
@@ -59,7 +67,7 @@ export default class Register extends Component {
 	}
 
 	canSubmit = (event) => {
-		const {email, password, passwordConfirm, first, last, skills} = this.state;
+		const {email, password, passwordConfirm, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations} = this.state;
 
 		return (
 			email.length > 0 &&
@@ -67,7 +75,15 @@ export default class Register extends Component {
 			passwordConfirm === password &&
 			first.length > 0 &&
 			last.length > 0 &&
-			skills.length > 0
+			skills.length > 0 &&
+			title.length > 0 &&
+			environment.length > 0 &&
+			relationships.length > 0 &&
+			priorities.length > 0 &&
+			personality.length > 0 &&
+			workGoals.length > 0 &&
+			lifeGoals.length > 0 &&
+			accomodations.length > 0
 		)
 	}
 
@@ -77,8 +93,9 @@ export default class Register extends Component {
     	const { redirect } = this.state
 
 		return (
-			<div>
+			<div className="container">
 			<Form className={"form-horizontal"} onSubmit={this.handleSubmit.bind(this)}>
+				<h3 className="text-center register-header">Please fill in all of the following to register.</h3>
 	  			<FormGroup controlId="formHorizontalEmail">
 	    			<Col componentClass={ControlLabel} sm={4}>
 						Email
@@ -130,6 +147,78 @@ export default class Register extends Component {
 	    		</Col>
 	    		<Col sm={5}>
 	      				<Textarea className="form-control" placeholder="Skills" name="skills" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalTitle">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What is your preferred work title?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Title" name="title" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalEnvironment">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What is your ideal work environment?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Environment" name="environment" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalRelationships">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What do your ideal work relationships look like?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Work Relationships" name="relationships" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalPriorities">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What are your non-work priorities that will take precedence over your work?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Non-work Priorities" name="priorities" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalPersonality">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					Please describe your personality.
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Personality" name="personality" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalWorkGoals">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What are your short-term and long-term work goals?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Work goals" name="workGoals" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalLifeGoals">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What are your short-term and long-term life goals?
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Life goals" name="lifeGoals" onChange={this.handleChange} validations={[required]}/>
+	    			</Col>
+	  			</FormGroup>
+
+	  			<FormGroup controlId="formHorizontalAccomodations">
+	    			<Col componentClass={ControlLabel} sm={4}>
+					What are your requested work accomodations? 
+	    		</Col>
+	    		<Col sm={5}>
+	      				<Textarea className="form-control" placeholder="Accomodations" name="accomodations" onChange={this.handleChange} validations={[required]}/>
 	    			</Col>
 	  			</FormGroup>
 

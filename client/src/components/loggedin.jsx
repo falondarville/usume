@@ -15,7 +15,15 @@ export default class LoggedIn extends Component {
 				firstName: false,
 				lastName: '',
 				email: '',
-				skills: ''
+				skills: '',
+				title: '',
+				environment: '',
+				relationships: '',
+				priorities: '',
+				personality: '',
+				workGoals: '',
+				lifeGoals: '',
+				accomodations: ''
 			},
 			redirectToLogin: false
 		};
@@ -31,7 +39,15 @@ export default class LoggedIn extends Component {
 					firstName: userData.firstName,
 					lastName: userData.lastName,
 					email: userData.email,
-					skills: userData.skills
+					skills: userData.skills,
+					title: userData.title,
+					environment: userData.environment,
+					relationships: userData.relationships,
+					priorities: userData.priorities,
+					personality: userData.personality,
+					workGoals: userData.workGoals,
+					lifeGoals: userData.lifeGoals,
+					accomodations: userData.accomodations
 				}
 			})
 

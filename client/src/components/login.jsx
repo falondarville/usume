@@ -30,7 +30,7 @@ export default class Login extends Component {
     return (
       <div>
     	<Grid>
-    	<Form className={"form-horizontal"} method="post">
+    	<Form className={"form-horizontal login-form"} method="post">
   			<FormGroup controlId="formHorizontalEmail">
           {registerMessage && <p className="text-center thank-you"> {registerMessage}</p>}
     			<Col componentClass={ControlLabel} sm={4}>

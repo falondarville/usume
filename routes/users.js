@@ -20,6 +20,14 @@ router.post('/users', function(request, response){
 	var first = request.body.first;
 	var last= request.body.last;
 	var skills = request.body.skills;
+	var title = request.body.title;
+	var environment = request.body.environment;
+	var relationships = request.body.relationships;
+	var priorities = request.body.priorities;
+	var personality = request.body.personality;
+	var workGoals = request.body.workGoals;
+	var lifeGoals = request.body.lifeGoals;
+	var accomodations = request.body.accomodations;
 
 	function checkEmail(email){
 
@@ -30,7 +38,7 @@ router.post('/users', function(request, response){
 		}).then(function(data){
 
 			if (data == null){
-				addUser(email, password, first, last, skills);
+				addUser(email, password, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations);
 			} else {
 				throw {error: 1};
 			}
@@ -44,7 +52,7 @@ router.post('/users', function(request, response){
 	}
 
 	// take in variables and add to two tables
-	function addUser(email, password, first, last, skills){
+	function addUser(email, password, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations){
 
 		// push registration data to Users table after encrypting password
 		bcrypt.hash(password, 10, function(err, password) {
@@ -59,6 +67,14 @@ router.post('/users', function(request, response){
 				// push registration data to UserData table
 				db.UserData.create({
 					skills: skills,
+					title: title,
+					environment: environment,
+					relationships: relationships,
+					priorities: priorities,
+					personality: personality,
+					workGoals: workGoals,
+					lifeGoals: lifeGoals,
+					accomodations: accomodations,
 					UserId: data.id
 				}).then(function(data){
 					response.status(200);
