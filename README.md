@@ -12,6 +12,8 @@ The application is deployed on Heroku. Please note that if the application is th
 
 [Heroku application](https://cryptic-mesa-93686.herokuapp.com/)
 
+![alt text](./client/public/images/USUMEhomepage.gif)
+
 ## Technologies and Methodologies Used
 
 HTML/CSS, JavaScript, React.js, Express.js, Node.js, MySQL, MVC, axios, react-bootstrap (Bootstrap 3), react-router, Heroku for deployment, bcrypt, Passport
