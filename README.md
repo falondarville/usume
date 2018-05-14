@@ -12,6 +12,10 @@ The application is deployed on Heroku. Please note that if the application is th
 
 [Heroku application](https://cryptic-mesa-93686.herokuapp.com/)
 
+You can also see a demo of the application here:
+
+[Vimeo silent walkthrough](https://vimeo.com/269568456)
+
 ![alt text](./client/public/images/USUMEhomepage.gif)
 
 ## Technologies and Methodologies Used
