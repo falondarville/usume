@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 
-console.log('Running index.js')
-
-// will display user data from UserData table once logged in
-router.get('/index', function(req, res, next) {
- 	res.send({ express: 'this is the homepage' });
+router.get('/*', function(req, res, next) {
+ 	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
 module.exports = router;
