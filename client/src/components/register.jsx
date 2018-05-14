@@ -49,7 +49,7 @@ export default class Register extends Component {
 			const { email, password, passwordConfirm, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations, redirect, serverErrors } = this.state;
 			let self = this;
 			//post to Express API
-			axios.post('http://localhost:3001/users', {
+			axios.post('/users', {
 				email, password, passwordConfirm, first, last, skills, title, environment, relationships, priorities, personality, workGoals, lifeGoals, accomodations, redirect, serverErrors
 	  		})
 	  		.then(function(data){
