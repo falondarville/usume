@@ -24,7 +24,7 @@ The following is a presentation of the application:
 
 ## Technologies and Methodologies Used
 
-HTML/CSS, JavaScript, React.js, Express.js, Node.js, MySQL, MVC, axios, react-bootstrap (Bootstrap 3), react-router, Heroku for deployment, bcrypt, Passport
+HTML/CSS, JavaScript, React.js, Express.js, Node.js, MySQL, Sequelize, MVC, axios, react-bootstrap (which uses Bootstrap 3), react-router, Heroku for deployment, bcrypt, Passport
 
 ## Challenges and Learning Summary
 
@@ -34,4 +34,4 @@ This was also the first time that I have dealt with storing passwords in a datab
 
 I created everything from the idea, design, database schema, server configuration, front-end functionality, validation, and more. The entire application was built over the course of eight full days. The biggest challenge I came across was finding the proper resources for completing the project. I thoroughly enjoyed planning the application and determining the steps I needed to incrementally build out the functionality I was intending. I made daily lists on paper of the tasks I was planning to accomplish, and found that I continuously resolved issues ahead of schedule. 
 
-I am thankful to have had several people to help answer some of my questions including [fppz](https://github.com/fppz), especially regarding the relationship between React and Express. 
+I am thankful to have had several people to help answer some of my questions, including [fppz](https://github.com/fppz), especially regarding the relationship between React and Express. 
