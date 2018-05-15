@@ -4,7 +4,7 @@ USUME is a work-in-progress resume building website that currently offers regist
 
 Future functionality will include the ability to edit content populated onto the resume page, shareable public links to be sent to hiring managers, and more questions added for users to answer and get closer to being hired at their ideal job. 
 
-Access the build notes using the password **github**:
+Read the day-to-day build notes here:
 
 [Build notes on falondarville.com](https://falondarville.com/development-notes-for-usume/)
 
@@ -12,7 +12,7 @@ The application is deployed on Heroku. Please note that if the application is th
 
 [Heroku application](https://cryptic-mesa-93686.herokuapp.com/)
 
-You can also see a demo of the application here:
+You can also see a silent demo of the application here:
 
 [Vimeo silent walkthrough](https://vimeo.com/269568456)
 
