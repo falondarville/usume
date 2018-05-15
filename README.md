@@ -20,7 +20,7 @@ You can also see a silent demo of the application here:
 
 The following is a presentation of the application:
 
-<iframe src="//slides.com/falondarville/deck/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+[Slideshow]](http://slides.com/falondarville/deck)
 
 ## Technologies and Methodologies Used
 
