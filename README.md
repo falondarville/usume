@@ -20,7 +20,7 @@ You can also see a silent demo of the application here:
 
 The following is a presentation of the application:
 
-[Slideshow]](http://slides.com/falondarville/deck)
+[Slideshow](http://slides.com/falondarville/deck)
 
 ## Technologies and Methodologies Used
 
