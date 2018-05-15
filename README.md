@@ -18,6 +18,10 @@ You can also see a silent demo of the application here:
 
 ![alt text](./client/public/images/USUMEhomepage.gif)
 
+The following is a presentation of the application:
+
+<iframe src="//slides.com/falondarville/deck/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 ## Technologies and Methodologies Used
 
 HTML/CSS, JavaScript, React.js, Express.js, Node.js, MySQL, MVC, axios, react-bootstrap (Bootstrap 3), react-router, Heroku for deployment, bcrypt, Passport
